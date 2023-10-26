@@ -54,5 +54,5 @@ jobs:
           file: ./deploy/build/Dockerfile
           push: true
           tags: |
-            ${{ secrets.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.get-tags.outputs.tags }}
-            ${{ secrets.ECR_REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            public.ecr.aws/neiot/${{ env.IMAGE_NAME }}:${{ needs.get-tags.outputs.tags }}
+            public.ecr.aws/neiot/${{ env.IMAGE_NAME }}:latest
