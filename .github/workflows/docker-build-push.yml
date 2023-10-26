@@ -14,14 +14,11 @@ jobs:
     outputs:
       tags: ${{ steps.output-id.outputs.v }}
     steps:
-      - uses: actions/checkout@v3
-      - id: output-id
-        run: |
-          VERSION=edge
-          if [[ $GITHUB_REF == refs/tags/* ]]; then
-            VERSION=${GITHUB_REF#refs/tags/v}
-          fi
-          echo "v=${VERSION}" >> $GITHUB_OUTPUT
+      - name: Get git tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
 
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -54,5 +51,5 @@ jobs:
           file: ./deploy/build/Dockerfile
           push: true
           tags: |
-            public.ecr.aws/neiot/${{ env.IMAGE_NAME }}:${{ steps.output-id.outputs.tags }}
             public.ecr.aws/neiot/${{ env.IMAGE_NAME }}:latest
+            public.ecr.aws/neiot/${{ env.IMAGE_NAME }}:${{steps.tag.outputs.tag}}
