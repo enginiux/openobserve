@@ -34,7 +34,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.repository_owner }}
-          password: ${{ secrets.GHCR_TOKEN }} #此值是github专为Action提供的,这就是上一步没有手动添加的原因
+          password: ${{ secrets.GITHUB_TOKEN }} #此值是github专为Action提供的,这就是上一步没有手动添加的原因
       - name: Build && Push
         uses: docker/build-push-action@v2
         with:
