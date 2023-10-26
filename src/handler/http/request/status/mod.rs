@@ -132,7 +132,7 @@ pub async fn cache_status() -> Result<HttpResponse, Error> {
     let last_file_list_offset = db::compact::file_list::get_offset().await.unwrap();
     stats.insert(
         "COMPACT",
-        json::json!({"file_list_offset": last_file_list_offset}),
+        json::json!({ "file_list_offset": last_file_list_offset }),
     );
 
     Ok(HttpResponse::Ok().json(stats))

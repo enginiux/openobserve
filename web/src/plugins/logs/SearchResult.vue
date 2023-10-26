@@ -45,12 +45,14 @@
         :virtual-scroll-slice-size="300"
         :virtual-scroll-slice-ratio-before="10"
         :items="searchObj.data.queryResults.hits"
+        :wrap-cells="true"
         @virtual-scroll="onScroll"
         :style="{
           height:
             !searchObj.meta.showHistogram || searchObj.meta.sqlMode
               ? 'calc(100% - 0px)'
               : 'calc(100% - 150px)',
+          'word-break': 'break-all',
         }"
       >
         <template v-slot:before>
